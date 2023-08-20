@@ -35,6 +35,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
     const { params } = context;
+    console.log(`regenerating product ${params.productId}`)
     const response = await fetch(`http://localhost:4000/products/${params.productId}`)
     const data = await response.json()
     if(!data.id){
@@ -46,6 +47,6 @@ export const getStaticProps = async (context) => {
         props: {
             product: data
         },
-        
+        revalidate: 10,
     }
 }
