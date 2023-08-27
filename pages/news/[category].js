@@ -25,6 +25,7 @@ export const getServerSideProps = async(context) => {
     res.setHeader('Set-Cookie', ['name=Vishwas'])
     const response = await fetch(`http://localhost:4000/news?category=${category}`)
     const data = await response.json()
+    console.log(`Pre-remdering NewsArticleList ${category}`)
     return {
         props: {
             articles: data,
